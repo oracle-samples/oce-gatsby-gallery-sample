@@ -37,7 +37,7 @@
     "@oracle/gatsby-source-oce": "~1.1.1",
     "acorn": "~8.2.4",
     "dotenv": "~8.2.0",
-    "gatsby": "~3.5.0",
+    "gatsby": "~3.13.1",
     "gatsby-plugin-offline": "~4.5.0",
     "gatsby-source-filesystem": "~3.5.0",
     "prop-types": "~15.7.2",
