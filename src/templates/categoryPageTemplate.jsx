@@ -1,16 +1,22 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /**
  * Copyright (c) 2021 Oracle and/or its affiliates.
  * Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
  */
 
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
+/* eslint-disable import/no-absolute-path */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable global-require */
+
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import * as styles from './categoryPageTemplate.module.css';
+import backImage from '../images/back.png';
 
-const CategoryPageTemplate = ({ pageContext: { category, entries } }) => {
+const CategoryPageTemplate = ({ pageContext: { category, entries, buildTag } }) => {
   const [imageIndex, setImageIndex] = useState(-1);
 
   function handleGridKeyPress(e, index) {
@@ -54,9 +60,18 @@ const CategoryPageTemplate = ({ pageContext: { category, entries } }) => {
     }
   }
 
+  const BUILD_TAG = buildTag || 'none';
+  const sdkPackage = require('/node_modules/@oracle/gatsby-source-oce/package.json');
+  const SDK_VERSION = sdkPackage.version;
+
   return (
     <>
-      <Link to="/"><img className={styles.homeButton} src="/back.png" alt="back" /></Link>
+      <Helmet>
+        <meta name="description" content="Sample Gallery app created in Gatsby that uses Oracle Content Management" />
+        <meta name="BUILD_TAG" content={`${BUILD_TAG}`} />
+        <meta name="@oracle/gatsby-source-oce" content={`${SDK_VERSION}`} />
+      </Helmet>
+      <Link to="/"><img className={styles.homeButton} src={backImage} alt="back" /></Link>
       <h1 className={styles.heading}>{category}</h1>
       <h4 className={styles.subHeading}>
         {entries.length}

@@ -43,6 +43,7 @@ exports.createPages = async ({ graphql, actions }) => {
     component: path.resolve('src/templates/indexTemplate.jsx'),
     context: {
       categoriesArray,
+      buildTag: process.env.BUILD_TAG,
     },
   });
 
@@ -58,6 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         category,
         entries,
+        buildTag: process.env.BUILD_TAG,
       },
     });
   });
